@@ -1,8 +1,8 @@
-package com.flexislot.controller;
+package com.flexislot.controllers;
 
-import com.flexislot.entity.*;
-import com.flexislot.repository.*;
-import com.flexislot.service.*;
+import com.flexislot.models.*;
+import com.flexislot.repositories.*;
+import com.flexislot.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
