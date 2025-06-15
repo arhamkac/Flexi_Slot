@@ -15,10 +15,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("bookings")
     private User user;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "slot_id", nullable = false)

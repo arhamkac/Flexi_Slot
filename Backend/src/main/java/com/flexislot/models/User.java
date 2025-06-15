@@ -1,5 +1,7 @@
 package com.flexislot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -18,10 +20,14 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
     private String email;
+
+    @JsonIgnore
     private String password;
+
     private String role;
     private boolean blocked;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("user")  // Prevents circular reference during JSON serialization
     private List<Booking> bookings;
 }
