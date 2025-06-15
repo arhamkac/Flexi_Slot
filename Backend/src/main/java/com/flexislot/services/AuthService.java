@@ -20,16 +20,22 @@ public class AuthService {
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("USER");
+
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            user.setUsername(user.getEmail().split("@")[0]); // e.g., "tb"
+        }
+
         return userRepository.save(user);
     }
 
     public AuthResponse loginUser(AuthRequest request) {
-        User user = userRepository.findByEmail(request.getEmail());
+        User user;
+        user = userRepository.findByEmail(request.getEmail());
         if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
 
-        String token = jwtUtil.generateToken((UserDetails) user);
+        String token = jwtUtil.generateToken(user.getUsername());
         return new AuthResponse(token, user.getId(), user.getUsername(), user.getEmail());
     }
 }

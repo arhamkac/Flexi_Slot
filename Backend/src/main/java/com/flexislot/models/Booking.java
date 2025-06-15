@@ -1,5 +1,6 @@
 package com.flexislot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,15 +10,21 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties("bookings")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "slot_id", nullable = false)
+    @JsonIgnoreProperties({"bookings", "user"})
     private Slot slot;
 
+    @Column(nullable = false)
     private String purpose;
 }

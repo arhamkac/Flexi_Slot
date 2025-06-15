@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder @Getter @Setter
 public class SlotType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
