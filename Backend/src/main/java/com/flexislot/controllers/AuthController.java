@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -20,8 +22,15 @@ public class AuthController {
     @Autowired private UserService userService;
 
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return authService.registerUser(user);
+    public ResponseEntity<?> register(@RequestBody User user) {
+        try {
+            User savedUser = authService.registerUser(user);
+            return ResponseEntity.ok(savedUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", "Something went wrong"));
+        }
     }
 
     @PostMapping("/login")

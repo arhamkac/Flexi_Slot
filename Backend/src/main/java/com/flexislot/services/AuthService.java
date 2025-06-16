@@ -18,15 +18,20 @@ public class AuthService {
     @Autowired private JwtUtil jwtUtil;
 
     public User registerUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("USER");
 
         if (user.getUsername() == null || user.getUsername().isEmpty()) {
-            user.setUsername(user.getEmail().split("@")[0]); // e.g., "tb"
+            user.setUsername(user.getEmail().split("@")[0]); // auto-generate username
         }
 
         return userRepository.save(user);
     }
+
 
     public AuthResponse loginUser(AuthRequest request) {
         User user;
