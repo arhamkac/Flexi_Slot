@@ -27,6 +27,7 @@ public class Slot {
         return slotType != null ? slotType.getDate() : null;
     }
 
+    @Builder.Default
     @Column(nullable = false)
     private boolean booked = false;
 
