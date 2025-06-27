@@ -59,6 +59,12 @@
 
 ---
 
+# FlexiSlot – Backend
+
+🔗 **Frontend Repository**: [FlexiSlot-Frontend](https://github.com/arhamkac/FlexiSlot-Frontend)
+
+---
+
 ## 📂 Folder Structure
 
 ```plaintext
