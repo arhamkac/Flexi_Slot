@@ -206,34 +206,5 @@ npm test
 - `PUT /api/admin/users/{userId}/block` - Block/unblock user
 - `GET /api/admin/bookings` - Get all bookings
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Om Sai Ram** - Initial work
-
-## 🙏 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- React team for the amazing frontend library
-- All contributors and testers
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the repository
-- Contact the development team
-
----
 
 **Note**: This is a development version. For production deployment, ensure proper security configurations and environment-specific settings.
